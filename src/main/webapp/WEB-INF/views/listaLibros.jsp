@@ -18,12 +18,18 @@
 				<th>ISBN</th>
 				<th>Titulo</th>
 				<th>Autor</th>
+				<th>Precio</th>
+				<th>Páginas</th>
+				<th>Tamática</th>
 			</tr>		
 			<c:forEach var="libro" items="${listadoLibros }" >
 				<tr>
 					<td>${libro.isbn}</td>
 					<td>${libro.titulo}</td>
 					<td>${libro.autor}</td>
+					<td>${libro.precioUnitario}</td>
+					<td>${libro.paginas}</td>
+					<td>${libro.tema.descTema}</td>
 				</tr>
 			</c:forEach>
 		</table>

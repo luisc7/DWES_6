@@ -16,7 +16,11 @@ public class LibroDaoImpl implements LibroDao {
 	
 	@Override
 	public List<Libro> findByTopic(String temaAbreviado){
-		return lrepo.buscarTema(temaAbreviado);
-		
+		return lrepo.buscarTema(temaAbreviado);		
+	}
+
+	@Override
+	public List<Libro> findByName(String cadenaBusqueda) {
+		return lrepo.buscarLibro(cadenaBusqueda);
 	}
 }
