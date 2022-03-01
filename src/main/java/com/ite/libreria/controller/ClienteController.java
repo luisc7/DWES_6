@@ -38,5 +38,13 @@ public class ClienteController {
 		e.addAttribute("listadoLibros", ldao.findByName(cadenaBusqueda));
 		return "listaLibros";
 	}
+	
+	@GetMapping("/verDetalle/{isbn}")
+	public String detalle(
+			@PathVariable ("isbn") String isbn,
+			Model e) {
+		e.addAttribute("libroEntero", ldao.findByIsbn(Long.parseLong(isbn)));
+		return "detalleLibro";
+	}
 
 }

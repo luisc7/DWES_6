@@ -15,4 +15,7 @@ public interface LibroRepository extends JpaRepository<Libro, Long>{
 	@Query("select lib from Libro lib where lib.titulo like %?1% ")
 	public List<Libro> buscarLibro(String cadenaBusqueda);
 
+	@Query("select lib from Libro lib where lib.novedad = 'N' ")
+	public List<Libro> buscarNovedades();
+
 }

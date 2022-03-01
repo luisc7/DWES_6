@@ -1,0 +1,21 @@
+@charset "ISO-8859-1";
+
+img {
+    float:left;
+    object-fit: contain;
+    display: block;
+    box-sizing: border-box;
+    height: 250px;
+    width: auto;
+}
+
+/* Intercambiar filas y columnas de tablas */
+/* basado en: https://stackoverflow.com/questions/23556364/how-to-convert-columns-to-rows-using-css/23556911 */
+table tr > *{
+    display: block;
+}
+table tr,
+table thead,
+table tbody {
+    display: table-cell;
+}

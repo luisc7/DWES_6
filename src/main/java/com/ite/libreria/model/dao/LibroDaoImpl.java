@@ -23,4 +23,14 @@ public class LibroDaoImpl implements LibroDao {
 	public List<Libro> findByName(String cadenaBusqueda) {
 		return lrepo.buscarLibro(cadenaBusqueda);
 	}
+
+	@Override
+	public Libro findByIsbn(long isbn) {
+		return lrepo.findById(isbn).orElse(null);
+	}
+
+	@Override
+	public List<Libro> findNewReleases() {
+		return lrepo.buscarNovedades();
+	}
 }

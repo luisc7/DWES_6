@@ -19,12 +19,13 @@ INSERT INTO TEMAS (DESC_TEMA, ABREVIATURA)
     ('Mecánica', 'MECAN'),
     ('Narrativa', 'NARR');
 
-INSERT INTO LIBROS (ISBN, TITULO, AUTOR, PRECIO_UNITARIO, PAGINAS, ID_TEMA)
+INSERT INTO LIBROS (ISBN, TITULO, AUTOR, PRECIO_UNITARIO, PAGINAS, NOVEDAD, ID_TEMA)
     VALUES
-    (9788417492045, 'Magnum hojas de contacto', 'Blume', 35, 524, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='FOTO')),
-    (9788470631810, 'Normalización del dibujo industrial', 'F. Javier Rodríguez de Abajo, Roberto Galarraga Astibia', 60, 307, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='MECAN')),
-    (9788425327926, 'Collins Compact Diccionario Inglés', 'Grijalbo', 18, 875, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='IDIOM')),
-    (9788408067610, 'El príncipe de la niebla', 'Carlos Ruiz Zafón', 15, 230, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='NARR')),
-    (9788428319683, 'Máquinas prontuario. Técnicas, máquinas, herramientas', 'N. Larburu', 30, 626, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='MECAN')),
-    (9788440072160, 'Maquinas. Cálculos de Taller', 'A. L. Casillas', 25, 643, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='MECAN')),
-    (9788408033431, 'El alquimista', 'Paulo Coelho', 28, 222, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='NARR'));
+    (9788417492045, 'Magnum hojas de contacto', 'Blume', 35, 524, 'N', (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='FOTO')),
+    (9788470631810, 'Normalización del dibujo industrial', 'F. Javier Rodríguez de Abajo, Roberto Galarraga Astibia', 60, 307, 'N', (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='MECAN')),
+    (9788425327926, 'Collins Compact Diccionario Inglés', 'Grijalbo', 18, 875, NULL, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='IDIOM')),
+    (9788408067610, 'El príncipe de la niebla', 'Carlos Ruiz Zafón', 15, 230, NULL, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='NARR')),
+    (9788428319683, 'Máquinas prontuario. Técnicas, máquinas, herramientas', 'N. Larburu', 30, 626, NULL, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='MECAN')),
+    (9788440072160, 'Maquinas. Cálculos de Taller', 'A. L. Casillas', 25, 643, NULL, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='MECAN')),
+    (9788408033431, 'El alquimista', 'Paulo Coelho', 28, 222, NULL, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='NARR'))
+    (9788434822061, 'Chis y Garabis', 'Paloma Bordons', 12, 120, NULL, (SELECT ID_TEMA FROM temas WHERE temas.abreviatura='NARR'));

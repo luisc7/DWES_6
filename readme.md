@@ -6,23 +6,23 @@ Modelo de bases de datos (creación de las tablas al final):
 
 ![Modelo de datos del ejercicio](src/main/resources/static/img/AI6_BBDD_librero.png)
 
-Un librero quiere salir a internet para vender sus libros. Para lo cual le vamos a hacer una aplicación que la puedan usar tanto los clientes que se registren (ROL_CLIENTE), como una gestión por parte del propietario (ROL_ADMON), para operaciones de mantenimiento de las tablas a través de la aplicación (CRUD), como de gestión de sus clientes y pedidos.
+Un librero quiere empezar a vender sus libros por Internet. Desarrollar con Spring Boot una aplicación que la puedan usar tanto los clientes que se registren (ROL_CLIENTE) como el propietario (ROL_ADMON). El propietario podrá realizar operaciones de mantenimiento de las tablas a través de la aplicación (CRUD), así como gestionar sus clientes y pedidos.
 
-De momento para que sea más fácil la gestión de la librería, vamos a hacer un carrito simple, de modo que lo primero que aparece es una pantalla pidiendo el usuario y la password, y la opción de registrarse (para ello en la base de datos vamos a crear un usuario de cada ROL): los usuarios cliente se pueden registrar en esta página (el rol lo ponemos nosotros desde el programa). El ROL_ADMINISTRADOR solo podrá dar de alta usuarios desde dentro de la aplicación.
+Se empleará un carrito simple: Lo primero que aparece es una pantalla pidiendo el usuario y la contraseña, además de la opción de registrarse. En la base de datos se crea un usuario de cada ROL:
 
-Una vez que entran les aparecerá un menú de navegación, configurado en función del ROL de entrada con la siguiente configuración:
+- Los usuarios cliente se pueden registrar en esta página (el rol lo ponemos nosotros desde el programa).
+- El ROL_ADMINISTRADOR solo podrá dar de alta usuarios desde dentro de la aplicación.
 
-a) La aplicación tendrá un menú compartido por todos, pero algunas partes serán visibles solo para los usuarios autorizados:
+a) Al entrar en la aplicación aparecerá un menú de navegación compartido por todos los usuarios, pero cuyos apartados se mostrarán o no según el ROL que tenga:
 
   1. Usuarios, Perfiles, Clientes, Temas: solo visibles por el ADMINISTRADOR.
   2. Buscar por Tema, Buscar por palabra (LIKE): ADMINISTRADOR y CLIENTE.
   3. Mis Datos y ver carrito: SOLO CLIENTE.
-  4. Inicio y Registro: solo si el usuario NO está autenticado.(esto para una versión más avanzada del proyecto, en el que permitiésemos usuarios no autenticados, navegando por nuestra aplicación).
+  4. (Versión carrito complejo) Inicio y Registro: solo si el usuario NO está autenticado (usuarios no autenticados pueden  navegar por la aplicación).
   5. Cerrar Sesión: SOLO si el usuario está autenticado.
+  6. Un enlace a nuevo Libro (ROL_ADMON).
 
-Un enlace a nuevo Libro (ROL_ADMON).
-
-Y un listado de los libros marcados como novedad  en la tabla de libros con la información:
+Y un listado de los libros marcados como novedad en la tabla de libros con la información:
 
 - Titulo, autor, precio.
 - Y las opciones :
