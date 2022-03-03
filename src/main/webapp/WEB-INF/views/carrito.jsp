@@ -7,7 +7,7 @@
 
 	<head>
 		<meta charset="ISO-8859-1">
-		<title>Insert title here</title>
+		<title>Carrito</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	</head>
 	
@@ -21,7 +21,6 @@
 				<th>Precio</th>
 				<th>Páginas</th>
 				<th>Temática</th>
-				<th>Opciones</th>
 			</tr>		
 			<c:forEach var="libro" items="${listadoLibros }" >
 				<tr>
@@ -31,12 +30,6 @@
 					<td>${libro.precioUnitario}</td>
 					<td>${libro.paginas}</td>
 					<td>${libro.tema.descTema}</td>
-					<td>
-						<a href="/cliente/verDetalle/${libro.isbn}" class="btn btn-info btn-sm">Ver detalle</a>
-						<a href="/addCarrito/${libro.isbn}" class="btn btn-success btn-sm">Add carrito</a>
-						<a href="/modificar/${libro.isbn}" class="btn btn-warning btn-sm">Modificar</a>
-						<a href="/eliminar/${libro.isbn}" class="btn btn-danger btn-sm">Eliminar</a>
-					</td>
 				</tr>
 			</c:forEach>
 		</table>

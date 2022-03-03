@@ -19,6 +19,8 @@
 		  </button>
 		  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav">
+		    
+		    <c:if test="${rolAdmin == true }">
 		      <li class="nav-item active">
 		        <a class="nav-link" href="/admon/usuarios">Usuarios</a>
 		      </li>
@@ -31,6 +33,8 @@
 		      <li class="nav-item active">
 		        <a class="nav-link" href="/admon/temas">Temas</a>
 		      </li>
+		     </c:if>
+		      
 		      <li class="nav-item active">
 		        <a class="nav-link" href="/cliente/tema">Buscar por tema</a>
 		      </li>
@@ -49,7 +53,7 @@
 								<li class="nav-item"><a class="nav-link"
 									href="/registro">Registrarse</a></li>
 				<li class="nav-item"><a class="nav-link"
-						href="/logout">Cerrar Sesión</a></li>
+						href="cerrarSesion">Cerrar Sesión</a></li>
 		    </ul>
 		  </div>
 		</nav>

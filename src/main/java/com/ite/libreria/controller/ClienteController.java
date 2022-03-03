@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ite.libreria.model.dao.LibroDao;
+import com.ite.libreria.model.dao.PedidoDao;
+import com.ite.libreria.model.dao.TemaDao;
 
 @Controller
 @RequestMapping("/cliente")
@@ -17,9 +19,20 @@ public class ClienteController {
 	
 	@Autowired
 	private LibroDao ldao;
+	@Autowired
+	private TemaDao tdao;
+	@Autowired
+	private PedidoDao pdao;
+	
+	@GetMapping("/tema")
+	public String tema(
+			Model e) {
+		e.addAttribute("listadoTemas", tdao.findTemas());
+		return "listaTemas";
+	}
 	
 	@GetMapping("/tema/{temaAbr}")
-	public String tema(
+	public String temaLibros(
 			@PathVariable ("temaAbr") String temaAbreviado,
 			Model e) {
 		e.addAttribute("listadoLibros", ldao.findByTopic(temaAbreviado));
@@ -45,6 +58,13 @@ public class ClienteController {
 			Model e) {
 		e.addAttribute("libroEntero", ldao.findByIsbn(Long.parseLong(isbn)));
 		return "detalleLibro";
+	}
+	
+	@GetMapping("/verCarrito")
+	public String carrito(
+			Model e) {
+		
+		return "carrito";
 	}
 
 }

@@ -32,7 +32,7 @@ Y un listado de los libros marcados como novedad en la tabla de libros con la in
 
 ### LIBRERÍA. ROL_CLIENTE: casos de uso(**“/cliente”**)
 
-- **“/tema"** : mostrar la lista de libros de ese tema (con las opciones ver detalle y añadir carrito.
+- **“/tema"** : mostrar la lista de libros de ese tema (con las opciones ver detalle y añadir carrito).
 - **“/buscar"** : con la cadena introducida por parámetro, buscar los libros cuyo título contenga esa cadena.
 - **“/verDetalle/{isbn}"** : Mostrar los campos de la base de datos incluida la imagen del libro (si no lo tienes saca siempre la misma imagen. Con las opciones: volver, añadir carrito.
 
@@ -42,7 +42,7 @@ El carrito va a ser un arraylist de Libro, para hacerlo fácil, porque la cantid
 
 Opciones de carrito:
 
-- **“/addCarrito/{isbn}"** : añadir el libro al arraylist del carrito de la sesión (Si el cliente escoge dos veces el mismo libro, solo le aparecerá una sola vez en el carrito(no contemplamos , de momento cantidad).
+- **“/addCarrito/{isbn}"** : añadir el libro al arraylist del carrito de la sesión (Si el cliente escoge dos veces el mismo libro, solo le aparecerá una sola vez en el carrito (de momento no contemplamos cantidad).
 - **“/verCarrito"** : en página nueva sacar la lista de libros del carrito, incluir en esta pantalla la opción de Cerrar Sesión.
 
 Cuando aparezca el carrito con los libros seleccionados, veremos las siguientes opciones:
@@ -55,8 +55,8 @@ Cuando aparezca el carrito con los libros seleccionados, veremos las siguientes 
 2. **“/eliminar"** : Eliminar el libro del carrito y recargar la página
 3. **“/volver"** : volver a la pantalla de inicio.
 4. **“/logout"** : cerrar la sesión.
-  a. Si no has hecho formulario de login, security te cierra la sesión, y te devuelve al formulario de Inicio sesión de forma automática.
-  b. Si tienes un formulario de login propio, debes implementar un método con esta url para poner los mandatos de security indicados en clase, y volver al formulario de inicio de sesión.
+    - a) Si no has hecho formulario de login, security te cierra la sesión, y te devuelve al formulario de Inicio sesión de forma automática.
+    - b) Si tienes un formulario de login propio, debes implementar un método con esta url para poner los mandatos de security indicados en clase, y volver al formulario de inicio de sesión.
 
 ### LIBRERÍA. ROL_ADMON.(**“/admon**)
 
