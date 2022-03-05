@@ -35,16 +35,8 @@ public class HomeController {
 			Model model,
 			HttpSession sesionUsuario) {
 		
-		Usuario usuario = (Usuario) sesionUsuario.getAttribute("usuarioActivo");
-		
-		if (usuario == null)
-			return "redirect:/acceso";
-		else {
-			model.addAttribute("rolAdmin", urepo.userIsAdmin(usuario));
-			model.addAttribute("rolCliente", null);
 			model.addAttribute("listaNovedades", ldao.findNewReleases());
 			return "index";
-		}
 	}
 	
 	
