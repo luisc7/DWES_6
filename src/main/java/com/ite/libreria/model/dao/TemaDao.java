@@ -7,5 +7,6 @@ import com.ite.libreria.model.beans.Tema;
 public interface TemaDao {
 	
 	List<Tema> findTemas();
+	String nombreTema(String tema);
 
 }

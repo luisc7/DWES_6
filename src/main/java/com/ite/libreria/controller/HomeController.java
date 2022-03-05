@@ -26,16 +26,12 @@ public class HomeController {
 	private UsuarioDao urepo;
 	
 	@GetMapping("/")
-	/**
-	 * Al acceder a /clientes, dirijo a login si no hay sesión de usuario, 
-	 * Si el usuario ha iniciado sesión, redirijo a la lista de destacados 
-	 */
-	
 	public String inicio(
 			Model model,
 			HttpSession sesionUsuario) {
 		
 			model.addAttribute("listaNovedades", ldao.findNewReleases());
+			model.addAttribute("h1pagina", "Últimas novedades");
 			return "index";
 	}
 	
@@ -81,18 +77,6 @@ public class HomeController {
 		}
 	}
 	
-	@GetMapping("/cerrarSesion")
-	public String cierre(
-			HttpSession sesionUsuario,
-			Model model	) {
-		/**
-		 * Cierra la sesión borrando el atributo del usuarioActivo,
-		 * y vuelve a acceso
-		 */
-		
-		sesionUsuario.removeAttribute("usuarioActivo");
-		return "redirect:/acceso";
-	}
 	
 	
 	

@@ -28,6 +28,7 @@ public class ClienteController {
 	public String tema(
 			Model e) {
 		e.addAttribute("listadoTemas", tdao.findTemas());
+		e.addAttribute("tituloPagina", "Listado de los temas disponibles");
 		return "listaTemas";
 	}
 	
@@ -36,6 +37,8 @@ public class ClienteController {
 			@PathVariable ("temaAbr") String temaAbreviado,
 			Model e) {
 		e.addAttribute("listadoLibros", ldao.findByTopic(temaAbreviado));
+		e.addAttribute("tituloPagina", "Libros de "+ tdao.nombreTema(temaAbreviado));
+		e.addAttribute("h1pagina", "Todos los libros de "+ tdao.nombreTema(temaAbreviado));
 		return "listaLibros";
 	}
 	
@@ -49,6 +52,8 @@ public class ClienteController {
 			@RequestParam ("busqueda") String cadenaBusqueda,
 			Model e) {
 		e.addAttribute("listadoLibros", ldao.findByName(cadenaBusqueda));
+		e.addAttribute("tituloPagina", "Libros  \""+ cadenaBusqueda + "\"");
+		e.addAttribute("h1pagina", "Búsqueda de libros cuyo título contiene \""+ cadenaBusqueda + "\"");
 		return "listaLibros";
 	}
 	

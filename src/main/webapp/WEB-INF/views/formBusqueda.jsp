@@ -8,6 +8,9 @@
 <title>Búsqueda de libros por título</title>
 </head>
 <body>
+
+	<jsp:include page="menu.jsp"/>
+		
 	<form action="buscar" method="post" name="formBusqueda">
 	<fieldset>
 		<legend>Busca libros en nuestra colección:</legend>

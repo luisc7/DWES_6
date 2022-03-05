@@ -19,4 +19,9 @@ public class TemaDaoImpl implements TemaDao{
 		return tdao.findAll();
 	}
 
+	@Override
+	public String nombreTema(String tema) {
+		return tdao.nameTopic(tema);
+	}
+
 }
