@@ -1,21 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" media="screen" href="css/style.css"/>
-<title>Búsqueda de libros por título</title>
+<title>BÃºsqueda de libros por tÃ­tulo</title>
 </head>
 <body>
 
 	<jsp:include page="menu.jsp"/>
-		
+	
+	<h1 class="text-primary">BÃºsqueda de libros</h1>
 	<form action="buscar" method="post" name="formBusqueda">
 	<fieldset>
-		<legend>Busca libros en nuestra colección:</legend>
+		<legend>Busca libros en nuestra colecciÃ³n:</legend>
 		<div class="grid">		
-			<label for="busqueda">Escribe aquí: </label>
+			<label for="busqueda">Escribe aquÃ­: </label>
 			<input type="text" name="busqueda" id="busqueda" />
 		</div>
 		

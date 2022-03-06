@@ -24,4 +24,14 @@ public class TemaDaoImpl implements TemaDao{
 		return tdao.nameTopic(tema);
 	}
 
+	@Override
+	public boolean nuevoTema(String nombreTema, String abreviatura) {
+		Tema nuevoTema = new Tema(abreviatura, nombreTema);
+		if (tdao.topicExist(nombreTema)==null) {
+			tdao.save(nuevoTema);
+			return true;
+		} else 
+			return false;
+	}
+
 }

@@ -1,33 +1,33 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" media="screen" href="/css/style.css"/>
-<title>Inicio de sesión</title>
+<title>Inicio de sesiÃ³n</title>
 </head>
 <body>
 	<form action="acceso" method="post" name="formAlta">
 	<fieldset>
-		<legend>Inicio de sesión</legend>
+		<legend>Inicio de sesiÃ³n</legend>
 		<div class="grid">
 		
 		<label for="username">Usuario </label>
 		<input type="text" name="username" id="username" placeholder="Nombre de usuario"/>
-		<label for="password">Contraseña </label>
+		<label for="password">ContraseÃ±a </label>
 		<input type="password" name="password" id="password"/>
 		
 		</div>
 		
-	<input class="send-button" type="submit" value="Iniciar sesión" />
+	<input class="send-button" type="submit" value="Iniciar sesiÃ³n" />
 		
 	</fieldset>
 	
 	</form>
 	<p>${mensajeLogin}</p>
-	<p>Usuario0: <b>tutankadmon</b>   Contraseña: <b>faraon</b></p>
-	<p>Usuario1: <b>ClientePrueba1</b>   Contraseña: <b>secreto1</b></p>
-	<p>Usuario2: <b>ClientePrueba2</b>   Contraseña: <b>secreto2</b></p>
+	<p>Usuario0: <b>tutankadmon</b>   ContraseÃ±a: <b>faraon</b></p>
+	<p>Usuario1: <b>ClientePrueba1</b>   ContraseÃ±a: <b>secreto1</b></p>
+	<p>Usuario2: <b>ClientePrueba2</b>   ContraseÃ±a: <b>secreto2</b></p>
 </body>
 </html>

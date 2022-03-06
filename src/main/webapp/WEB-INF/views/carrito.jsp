@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html>
 
 	<head>
-		<meta charset="ISO-8859-1">
+		<meta charset="UTF-8">
 		<title>Carrito</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	</head>
@@ -22,7 +22,7 @@
 	 	 </c:if>
 		
 		<c:if test="${contenido  == 'false'}">
-			<p>Tu carrito está vacío</p>
+			<p>Tu carrito estÃ¡ vacÃ­o</p>
 	 	 </c:if>
 	 	 
 	 	 <c:if test="${contenido  == 'true'}">
@@ -33,7 +33,7 @@
 				<th>ISBN</th>
 				<th>Titulo</th>
 				<th>Precio</th>
-				<th>Temática</th>
+				<th>TemÃ¡tica</th>
 				<th>Opciones</th>
 			</tr>		
 			<c:forEach var="libro" items="${carrito }" >

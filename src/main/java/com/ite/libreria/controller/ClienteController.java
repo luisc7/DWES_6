@@ -107,9 +107,10 @@ public class ClienteController {
 			carrito.add(libroAdd);
 			attr.addFlashAttribute("mensajeCarrito", "Se ha añadido el  libro "+ libroAdd.getTitulo() + " a tu carrito.");
 			attr.addFlashAttribute("tipoMensaje", "alert-success");
-		} else
+		} else {
 			attr.addFlashAttribute("mensajeCarrito", "El libro "+ libroAdd.getTitulo() + " ya estaba en el carrito.");
-		attr.addFlashAttribute("tipoMensaje", "alert-warning");
+			attr.addFlashAttribute("tipoMensaje", "alert-warning");
+		}
 		sesionUsuario.setAttribute("carrito", carrito);
 		return "redirect:/cliente/verCarrito";
 	}

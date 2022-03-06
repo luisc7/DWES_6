@@ -8,5 +8,5 @@ public interface TemaDao {
 	
 	List<Tema> findTemas();
 	String nombreTema(String tema);
-
+	boolean nuevoTema(String nombreTema, String abreviatura);
 }
