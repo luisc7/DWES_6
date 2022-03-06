@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" media="screen" href="css/style.css"/>
-<title>Búsqueda de libros por título</title>
+<link rel="stylesheet" media="screen" href="/css/style.css"/>
+<title>Alta de nuevo tema</title>
 </head>
 <body>
 
@@ -17,16 +17,16 @@
 		<legend>Añadir nuevas temáticos de libros</legend>
 		<div class="grid">
 		
-			<label for="nombreTema">Nombre del nuevo tema: </label>
-			<input type="text" name="nombreTema" id="nombreTema" />
+			<label for="nombreTema">Nombre del nuevo tema </label>
+			<input type="text" name="nombreTema" id="nombreTema"  class="form-control"/>
 			
-			<label for="abrevTema">Abreviatura: </label>
-			<input type="text" name="abrevTema" id="abrevTema" placeholder="Máximo 6 caracteres" />
+			<label for="abrevTema">Abreviatura </label>
+			<input type="text" name="abrevTema" id="abrevTema" placeholder="Máximo 6 caracteres"  class="form-control"/>
 		</div>
 		
 	</fieldset>
 	
-	<input class="send-button" type="submit" value="Añadir tema" />
+	<input class="send-button btn btn-primary" type="submit" value="Añadir tema" />
 	
 	</form>
 </body>

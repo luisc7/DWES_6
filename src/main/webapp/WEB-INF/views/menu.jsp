@@ -38,6 +38,15 @@
 		      <li class="nav-item active">
 		        <a class="nav-link" href="/cliente/tema">Buscar por tema</a>
 		      </li>
+		      
+		      <sec:authorize access="hasAuthority('ROL_ADMON')">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="/admon/altaLibro">Nuevo libro</a>
+		      </li>
+		     </sec:authorize>
+		      
+		      
+		      
 		      <li class="nav-item active">
 		        <a class="nav-link" href="/cliente/buscar">Buscar títulos</a>
 		      </li>

@@ -34,4 +34,9 @@ public class TemaDaoImpl implements TemaDao{
 			return false;
 	}
 
+	@Override
+	public Tema temaPorId(int idTema) {
+		return tdao.findById(idTema).orElse(null);
+	}
+
 }

@@ -19,3 +19,54 @@ table thead,
 table tbody {
     display: table-cell;
 }
+
+/* formulario */
+
+legend {
+	font-size: 1.3em;
+}
+
+.grid {
+	display:inline;
+}
+
+.grid input,
+.grid select {
+	display: block;
+	width: 300px;
+}
+
+label {
+	display: inline;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns: 200px 350px;
+	
+}
+
+form label {
+	margin-top: 5px;
+}
+
+form input,
+form select {
+	margin-bottom: 5px;
+}
+
+
+/* Quitar las flechas en los input number
+https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
+*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

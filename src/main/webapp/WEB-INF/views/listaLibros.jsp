@@ -15,6 +15,8 @@
 	
 		<jsp:include page="menu.jsp"/>
 		
+		<p class="alert ${tipoMensaje}" role="alert">${mensajeTema}</p>
+		
 		<h1 class="text-primary">${h1pagina}</h1>
 		<table class="table table-striped table-sm" >
 			<tr>
@@ -58,8 +60,8 @@
 		     			</sec:authorize>
 		     			
 		     			<sec:authorize access="hasAuthority('ROL_ADMON')">
-							<a href="/modificar/${libro.isbn}" class="btn btn-warning btn-sm">Modificar</a>
-							<a href="/eliminar/${libro.isbn}" class="btn btn-danger btn-sm">Eliminar</a>
+							<a href="/admon/modificarLibro/${libro.isbn}" class="btn btn-warning btn-sm">Modificar</a>
+							<a href="/admon/borrarLibro/${libro.isbn}" class="btn btn-danger btn-sm">Borrar libro</a>
 		     			</sec:authorize>
 		     			
 					</td>

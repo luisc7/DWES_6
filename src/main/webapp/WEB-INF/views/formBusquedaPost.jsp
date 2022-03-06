@@ -12,7 +12,7 @@
 	<jsp:include page="menu.jsp"/>
 	
 	<h1 class="text-primary">Búsqueda de libros</h1>
-	<form action="buscar" method="get" name="formBusqueda">
+	<form action="buscar" method="post" name="formBusqueda">
 	<fieldset class="form-group">		
 		<div class="grid">		
 			<label for="busqueda">Título del libro </label>

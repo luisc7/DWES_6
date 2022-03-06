@@ -62,12 +62,40 @@ public class ClienteController {
 		return "listaLibros";
 	}
 	
-	@GetMapping("/buscar")
+	/*@GetMapping("/buscar")
 	public String buscar() {
 		return "formBusqueda";
 	}
 	
-	@PostMapping("/buscar")
+	@GetMapping("/buscarGet")
+	public String buscarGet(
+			@RequestParam ("busqueda") String cadenaBusqueda,
+			Model e) {
+		e.addAttribute("listadoLibros", ldao.findByName(cadenaBusqueda));
+		e.addAttribute("tituloPagina", "Libros  \""+ cadenaBusqueda + "\"");
+		e.addAttribute("h1pagina", "Búsqueda de libros cuyo título contiene \""+ cadenaBusqueda + "\"");
+		return "listaLibros";
+	}*/
+	
+	
+	@GetMapping("/buscar")
+	public String buscar(
+			@RequestParam (required=false) String busqueda,
+			Model e) {
+		if (busqueda==null)
+			return "formBusqueda";
+		else {
+			e.addAttribute("listadoLibros", ldao.findByName(busqueda));
+			e.addAttribute("tituloPagina", "Libros  \""+ busqueda + "\"");
+			e.addAttribute("h1pagina", "Búsqueda de libros cuyo título contiene \""+ busqueda + "\"");
+			return "listaLibros";
+		}
+	}
+	
+	
+	/*
+	 * 
+	 * @PostMapping("/buscar")
 	public String buscar(
 			@RequestParam ("busqueda") String cadenaBusqueda,
 			Model e) {
@@ -75,7 +103,7 @@ public class ClienteController {
 		e.addAttribute("tituloPagina", "Libros  \""+ cadenaBusqueda + "\"");
 		e.addAttribute("h1pagina", "Búsqueda de libros cuyo título contiene \""+ cadenaBusqueda + "\"");
 		return "listaLibros";
-	}
+	}*/
 	
 	@GetMapping("/verDetalle/{isbn}")
 	public String detalle(
