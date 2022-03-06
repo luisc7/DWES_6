@@ -33,7 +33,7 @@
 						<a href="/cliente/verDetalle/${libro.isbn}" class="btn btn-info btn-sm">Ver detalle</a>
 						
 						<sec:authorize access="hasAuthority('ROL_CLIENTE')">
-							<a href="/addCarrito/${libro.isbn}" class="btn btn-success btn-sm">Add carrito</a>
+							<a href="/cliente/addCarrito/${libro.isbn}" class="btn btn-success btn-sm">Add carrito</a>
 		     			</sec:authorize>
 		     			
 		     			<sec:authorize access="hasAuthority('ROL_ADMON')">

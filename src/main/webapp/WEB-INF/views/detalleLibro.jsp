@@ -17,8 +17,22 @@
 	<jsp:include page="menu.jsp"/>
 	
 	<sec:authorize access="hasAuthority('ROL_CLIENTE')">
-		<p><a href="/addCarrito/${libro.isbn}" class="btn btn-success btn-sm">Add carrito</a></p>
+	
+	<c:set var="contains" value="false" />
+	<c:forEach var="libro" items="${carrito}">
+	  <c:if test="${libro.isbn eq libroEntero.isbn}">
+	    <c:set var="contains" value="true" />
+	  </c:if>
+	</c:forEach>	
+	
+	
+	<c:if test="${contains  == 'false'}">
+		<p><a href="/cliente/addCarrito/${libroEntero.isbn}" class="btn btn-success btn-sm">Add carrito</a></p>
+	</c:if>
+	
 	</sec:authorize>
+	
+
 	
 	<img src="/img/${libroEntero.isbn}.jpg"/>
 	

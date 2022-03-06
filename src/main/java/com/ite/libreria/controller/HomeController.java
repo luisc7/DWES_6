@@ -32,6 +32,7 @@ public class HomeController {
 		
 			model.addAttribute("listaNovedades", ldao.findNewReleases());
 			model.addAttribute("h1pagina", "Últimas novedades");
+			sesionUsuario.setAttribute("ultimaVista", "/");
 			return "index";
 	}
 	
