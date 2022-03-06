@@ -11,6 +11,8 @@
 
 	<jsp:include page="menu.jsp"/>
 	
+	<p><a href="javascript:history.back()"><button type="button" class="btn btn-outline-secondary">Volver</button></a></p>
+		
 	<h1 class="text-primary">Dar de alta un nuevo tema</h1>
 	<form action="altaTema" method="post" name="altaTema">
 	<fieldset>
@@ -21,7 +23,7 @@
 			<input type="text" name="nombreTema" id="nombreTema"  class="form-control"/>
 			
 			<label for="abrevTema">Abreviatura </label>
-			<input type="text" name="abrevTema" id="abrevTema" placeholder="Máximo 6 caracteres"  class="form-control"/>
+			<input type="text" name="abrevTema" id="abrevTema" placeholder="Máximo 6 caracteres" maxlength="6" class="form-control"/>
 		</div>
 		
 	</fieldset>

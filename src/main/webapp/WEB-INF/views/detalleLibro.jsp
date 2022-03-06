@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html>
@@ -16,6 +17,8 @@
 	
 	<jsp:include page="menu.jsp"/>
 	
+	<p><a href="javascript:history.back()"><button type="button" class="btn btn-outline-secondary">Volver</button></a></p>
+	
 	<sec:authorize access="hasAuthority('ROL_CLIENTE')">
 	
 	<c:set var="contains" value="false" />
@@ -27,7 +30,7 @@
 	
 	
 	<c:if test="${contains  == 'false'}">
-		<p><a href="/cliente/addCarrito/${libroEntero.isbn}" class="btn btn-success btn-sm">Add carrito</a></p>
+		<p><a href="/cliente/addCarrito/${libroEntero.isbn}" class="btn btn-success btn-sm">Añadir al carrito</a></p>
 	</c:if>
 	
 	<c:if test="${contains  == 'true'}">
@@ -45,7 +48,7 @@
 			<th>ISBN</th>
 			<th>Titulo</th>
 			<th>Autor</th>
-			<th>Precio</th>
+			<th>Precio (€)</th>
 			<th>Páginas</th>
 			<th>Temática</th>
 		</tr>		
@@ -53,7 +56,10 @@
 				<td>${libroEntero.isbn}</td>
 				<td>${libroEntero.titulo}</td>
 				<td>${libroEntero.autor}</td>
-				<td>${libroEntero.precioUnitario}</td>
+				
+					<c:set var="precio" value="${libroEntero.precioUnitario}" />
+					<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${precio}" /></td>
+					
 				<td>${libroEntero.paginas}</td>
 				<td>${libroEntero.tema.descTema}</td>
 			</tr>

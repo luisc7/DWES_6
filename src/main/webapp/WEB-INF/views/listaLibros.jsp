@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,7 @@
 				<th>ISBN</th>
 				<th>Titulo</th>
 				<th>Autor</th>
-				<th>Precio</th>
+				<th>Precio (€)</th>
 				<th>Páginas</th>
 				<th>Temática</th>
 				<th>Opciones</th>
@@ -33,7 +34,10 @@
 					<td>${libro.isbn}</td>
 					<td>${libro.titulo}</td>
 					<td>${libro.autor}</td>
-					<td>${libro.precioUnitario}</td>
+					
+					<c:set var="precio" value="${libro.precioUnitario}" />
+					<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${precio}" /></td>
+					
 					<td>${libro.paginas}</td>
 					<td>${libro.tema.descTema}</td>
 					<td>
@@ -50,7 +54,7 @@
 						
 						
 						<c:if test="${contains  == 'false'}">
-							<a href="/cliente/addCarrito/${libro.isbn}" class="btn btn-success btn-sm">Add carrito</a>
+							<a href="/cliente/addCarrito/${libro.isbn}" class="btn btn-success btn-sm">Añadir al carrito</a>
 						</c:if>
 						
 						<c:if test="${contains  == 'true'}">

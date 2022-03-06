@@ -15,6 +15,11 @@
 	
 		<jsp:include page="menu.jsp"/>
 		
+		
+		<p><a href="volver"><button type="button" class="btn btn-outline-secondary">Volver</button></a></p>
+		
+		
+		
 		<c:set var="contenido" value="true" />
 		
 		<c:if test="${empty carrito}">
@@ -22,11 +27,11 @@
 	 	 </c:if>
 		
 		<c:if test="${contenido  == 'false'}">
-			<p>Tu carrito está vacío</p>
+			<p class="alert alert-secondary" role="alert">Tu carrito está vacío</p>
 	 	 </c:if>
 	 	 
 	 	 <c:if test="${contenido  == 'true'}">
-		<a href="/cliente/comprar" class="btn btn-primary btn-lg btn-block">Comprar</a>
+		<a href="/cliente/comprar" class="btn btn-primary btn-lg">Comprar</a>
 	
 		<table class="table table-striped table-sm" >
 			<tr>

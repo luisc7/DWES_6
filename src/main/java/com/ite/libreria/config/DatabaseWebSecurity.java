@@ -36,7 +36,7 @@ protected void configure(HttpSecurity http) throws Exception {
 		.authorizeRequests()
 //		 Los recursos estáticos no requieren autenticación
 		.antMatchers(
-		"/bootstrap/**",  "/img/**", "/css/**", "js/**").permitAll()
+		"/bootstrap/**",  "/img/**", "/css/**", "/js/**", "/db/**").permitAll()
 		
 		// Las vistas públicas no requieren autenticación
 		.antMatchers("/",

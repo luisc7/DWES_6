@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html>
@@ -22,20 +23,23 @@
 			<tr>
 				<th>Titulo</th>
 				<th>Autor</th>
-				<th>Precio</th>
+				<th>Precio (€)</th>
 				<th>Opciones</th>
 			</tr>		
 			<c:forEach var="libro" items="${listaNovedades }" >
 				<tr>
 					<td>${libro.titulo}</td>
 					<td>${libro.autor}</td>
-					<td>${libro.precioUnitario}</td>
-					<td>
 					
+					<c:set var="precio" value="${libro.precioUnitario}" />
+					<td><fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${precio}" /></td>
+					
+					
+					<td>					
 						<a href="/cliente/verDetalle/${libro.isbn}" class="btn btn-info btn-sm">Ver detalle</a>
 						
 						<sec:authorize access="hasAuthority('ROL_CLIENTE')">
-							<a href="/cliente/addCarrito/${libro.isbn}" class="btn btn-success btn-sm">Add carrito</a>
+							<a href="/cliente/addCarrito/${libro.isbn}" class="btn btn-success btn-sm">Añadir al carrito</a>
 		     			</sec:authorize>
 		     			
 		     			<sec:authorize access="hasAuthority('ROL_ADMON')">

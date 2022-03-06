@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html>
@@ -13,6 +14,8 @@
 
 	<jsp:include page="menu.jsp"/>
 	
+	<p><a href="javascript:history.back()"><button type="button" class="btn btn-outline-secondary">Volver</button></a></p>
+		
 	<h1 class="text-primary">Modificar los datos del libro</h1>
 	<form action="modificarLibro" method="post" name="modificarLibro">
 	<fieldset>
@@ -50,7 +53,8 @@
 			<input type="number"  required value="${libroModificar.paginas }"  name="paginas" id="paginas"  class="form-control"/>
 			
 			<label for="precio">Precio unitario </label>
-			<input type="number" step="0.01"  required value="${libroModificar.precioUnitario }"  name="precio" id="precio"  class="form-control"/>
+			<c:set var="precio" value="${libroModificar.precioUnitario}" />
+			<input type="number" step="0.01"  required value="<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${precio}" />"  name="precio" id="precio"  class="form-control"/>
 			
 			<label for="novedad">¿Novedad?</label>
 			

@@ -120,6 +120,12 @@ public class ClienteController {
 		return "carrito";
 	}
 	
+	@GetMapping("/volver")
+	public String colver() {
+		
+		return "redirect:/";
+	}
+	
 	@GetMapping("/addCarrito/{isbn}")
 	public String libroAddCarrito(
 			@PathVariable ("isbn") Long isbn,

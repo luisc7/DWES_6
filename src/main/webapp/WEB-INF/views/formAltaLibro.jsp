@@ -13,6 +13,8 @@
 
 	<jsp:include page="menu.jsp"/>
 	
+	<p><a href="javascript:history.back()"><button type="button" class="btn btn-outline-secondary">Volver</button></a></p>
+		
 	<h1 class="text-primary">Dar de alta un nuevo libro</h1>
 	<form action="altaLibro" method="post" name="altaLibro">
 	<fieldset>
@@ -21,10 +23,11 @@
 		
 		
 			<label for="ISBN">ISBN </label>
-			<input type="number" name="ISBN" id="ISBN"  class="form-control"/>
+			<input type="number" name="ISBN" id="ISBN"  class="form-control" required/>
 			
 			<label for="tema">Temática</label>
-            <select name="tema">    
+            <select name="tema" required >    
+            <option hidden value="" label=" "></option>
             <c:forEach var="temaBBDD" items="${listaTemas}" >
                 <option value="${temaBBDD.idTema}">${temaBBDD.descTema}</option>
             </c:forEach>        
