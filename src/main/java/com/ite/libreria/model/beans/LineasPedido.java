@@ -91,4 +91,10 @@ public class LineasPedido implements Serializable {
 		this.pedido = pedido;
 	}
 
+	@Override
+	public String toString() {
+		return "LineasPedido [numOrden=" + numOrden + ", cantidad=" + cantidad + ", fechaAlta=" + fechaAlta
+				+ ", precioVenta=" + precioVenta + ", libro=" + libro + ", pedido=" + pedido + "]";
+	}
+
 }

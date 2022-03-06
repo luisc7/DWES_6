@@ -51,4 +51,9 @@ public class Tema implements Serializable {
 		this.descTema = descTema;
 	}
 
+	@Override
+	public String toString() {
+		return "Tema [idTema=" + idTema + ", abreviatura=" + abreviatura + ", descTema=" + descTema + "]";
+	}
+
 }

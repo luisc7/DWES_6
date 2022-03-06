@@ -14,6 +14,8 @@
 	<body>
 
 		<jsp:include page="menu.jsp"/>
+		
+		<h1 class="text-primary">${h1pagina}</h1>
 	
 		<table class="table table-striped table-sm" >
 			<tr>

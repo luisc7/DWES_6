@@ -40,4 +40,9 @@ public class Perfile implements Serializable {
 		this.descripcion = descripcion;
 	}
 
+	@Override
+	public String toString() {
+		return "Perfile [idPerfil=" + idPerfil + ", descripcion=" + descripcion + "]";
+	}
+
 }

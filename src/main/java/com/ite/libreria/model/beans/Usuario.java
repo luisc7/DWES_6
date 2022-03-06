@@ -123,4 +123,11 @@ public class Usuario implements Serializable {
 		this.perfiles = perfiles;
 	}
 
+	@Override
+	public String toString() {
+		return "Usuario [username=" + username + ", apellido=" + apellido + ", direccion=" + direccion + ", email="
+				+ email + ", enabled=" + enabled + ", fechaAlta=" + fechaAlta + ", nombre=" + nombre + ", perfiles="
+				+ perfiles + "]";
+	}
+
 }

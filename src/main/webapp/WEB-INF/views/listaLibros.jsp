@@ -15,7 +15,7 @@
 	
 		<jsp:include page="menu.jsp"/>
 		
-		<h1>${h1pagina}</h1>
+		<h1 class="text-primary">${h1pagina}</h1>
 		<table class="table table-striped table-sm" >
 			<tr>
 				<th>ISBN</th>
@@ -48,7 +48,11 @@
 						
 						
 						<c:if test="${contains  == 'false'}">
-							<a href="/cliente/addCarrito/${libroEntero.isbn}" class="btn btn-success btn-sm">Add carrito</a>
+							<a href="/cliente/addCarrito/${libro.isbn}" class="btn btn-success btn-sm">Add carrito</a>
+						</c:if>
+						
+						<c:if test="${contains  == 'true'}">
+							<a class="btn btn-outline-success btn-sm">Ya está en el carrito</a>
 						</c:if>
 	
 		     			</sec:authorize>

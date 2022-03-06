@@ -30,6 +30,10 @@
 		<p><a href="/cliente/addCarrito/${libroEntero.isbn}" class="btn btn-success btn-sm">Add carrito</a></p>
 	</c:if>
 	
+	<c:if test="${contains  == 'true'}">
+		<p><a class="btn btn-outline-success btn-sm">Ya está en el carrito</a></p>
+	</c:if>
+	
 	</sec:authorize>
 	
 

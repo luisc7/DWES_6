@@ -15,7 +15,9 @@
 
 		<jsp:include page="menu.jsp"/>
 		
-		<h1>${h1pagina}</h1>
+		<p class="alert ${tipoMensaje}" role="alert">${mensajeCliente}</p>
+		
+		<h1 class="text-primary">${h1pagina}</h1>
 		<table class="table table-striped table-sm" >
 			<tr>
 				<th>Titulo</th>

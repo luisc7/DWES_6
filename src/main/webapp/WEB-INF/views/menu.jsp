@@ -65,6 +65,24 @@
 		    </ul>
 		  </div>
 		</nav>
-		<p>Hola usuario <sec:authentication property="name"/></p>
+		
+		
+		 <sec:authorize access="!isAuthenticated()">
+			  <p>No has iniciado sesión, <a href="/login">iníciala</a> o bien <a href="/registro">regístrate antes</a> si no tienes cuenta</p>		  
+		</sec:authorize>
+		
+		
+		 <sec:authorize access="hasAuthority('ROL_CLIENTE')">		      
+			      <p>Hola <sec:authentication property="name"/>!</p>			      
+		</sec:authorize>
+		
+		<sec:authorize access="hasAuthority('ROL_ADMON')">
+			<p>Bienvenido <sec:authentication property="name"/>, tienes acceso de administrador</p>
+		</sec:authorize>
+		
+		
+		
+		
+		
 	</body>
 </html>
