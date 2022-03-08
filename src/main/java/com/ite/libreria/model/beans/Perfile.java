@@ -24,6 +24,11 @@ public class Perfile implements Serializable {
 	public Perfile() {
 	}
 
+	public Perfile(String descripcion) {
+		super();
+		this.descripcion = descripcion;
+	}
+
 	public int getIdPerfil() {
 		return this.idPerfil;
 	}
@@ -38,6 +43,11 @@ public class Perfile implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	@Override
+	public String toString() {
+		return "Perfil con rol de " + descripcion.replaceAll("ROL_", "").toLowerCase() + "." ;
 	}
 
 }

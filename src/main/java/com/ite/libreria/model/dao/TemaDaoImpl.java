@@ -19,4 +19,24 @@ public class TemaDaoImpl implements TemaDao{
 		return tdao.findAll();
 	}
 
+	@Override
+	public String nombreTema(String tema) {
+		return tdao.nameTopic(tema);
+	}
+
+	@Override
+	public boolean nuevoTema(String nombreTema, String abreviatura) {
+		Tema nuevoTema = new Tema(abreviatura, nombreTema);
+		if (tdao.topicExist(nombreTema)==null) {
+			tdao.save(nuevoTema);
+			return true;
+		} else 
+			return false;
+	}
+
+	@Override
+	public Tema temaPorId(int idTema) {
+		return tdao.findById(idTema).orElse(null);
+	}
+
 }

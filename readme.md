@@ -4,7 +4,7 @@
 
 Modelo de bases de datos (creación de las tablas al final):
 
-![Modelo de datos del ejercicio](src/main/resources/static/img/AI6_BBDD_librero.png)
+![Modelo de datos del ejercicio](src/main/resources/static/db/Esquema_BBDD.png)
 
 Un librero quiere empezar a vender sus libros por Internet. Desarrollar con Spring Boot una aplicación que la puedan usar tanto los clientes que se registren (ROL_CLIENTE) como el propietario (ROL_ADMON). El propietario podrá realizar operaciones de mantenimiento de las tablas a través de la aplicación (CRUD), así como gestionar sus clientes y pedidos.
 

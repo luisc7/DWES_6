@@ -27,6 +27,12 @@ public class Tema implements Serializable {
 	public Tema() {
 	}
 
+	public Tema(String abreviatura, String descTema) {
+		super();
+		this.abreviatura = abreviatura;
+		this.descTema = descTema;
+	}
+
 	public int getIdTema() {
 		return this.idTema;
 	}
@@ -49,6 +55,34 @@ public class Tema implements Serializable {
 
 	public void setDescTema(String descTema) {
 		this.descTema = descTema;
+	}
+
+	@Override
+	public String toString() {
+		return "Tema [idTema=" + idTema + ", abreviatura=" + abreviatura + ", descTema=" + descTema + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descTema == null) ? 0 : descTema.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Tema))
+			return false;
+		Tema other = (Tema) obj;
+		if (descTema == null) {
+			if (other.descTema != null)
+				return false;
+		} else if (!descTema.equals(other.descTema))
+			return false;
+		return true;
 	}
 
 }

@@ -7,34 +7,29 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>Temáticas de libros</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<title>Mis datos</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+		<link rel="stylesheet" media="screen" href="/css/style.css"/>
 	</head>
 	
 	<body>
-
-		<jsp:include page="menu.jsp"/>
-		
-		<p class="alert ${tipoMensaje}" role="alert">${mensajeTema}</p>
-		
-		<h1 class="text-primary">${h1pagina}</h1>
+	
+	<jsp:include page="menu.jsp"/>
 	
 		<table class="table table-striped table-sm" >
 			<tr>
-				<th>Tema</th>
-				<th>Opciones</th>
+				<th>Nombre de usuario </th>
+				<th>Correo electrónico </th>
+				<th>Dirección</th>
+				<th>Perfil</th>
 			</tr>		
-			<c:forEach var="tema" items="${listadoTemas }" >
 				<tr>
-					<td>${tema.descTema}</td>
-					<td>
-						<a href="/cliente/tema/${tema.abreviatura}" class="btn btn-info btn-sm">Ver libros</a>
-					</td>
+					<td><sec:authentication property="name"/></td>
+					<td>${usuarioActivo.email}</td>
+					<td>${usuarioActivo.direccion}</td>
+					<td>${usuarioActivo.perfiles}</td>
 				</tr>
-			</c:forEach>
 		</table>
-		
-		
 	
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

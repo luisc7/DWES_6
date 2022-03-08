@@ -37,6 +37,18 @@ public class Libro implements Serializable {
 	public Libro() {
 	}
 
+	public Libro(long isbn, String autor, String novedad, int paginas, BigDecimal precioUnitario, String titulo,
+			Tema tema) {
+		super();
+		this.isbn = isbn;
+		this.autor = autor;
+		this.novedad = novedad;
+		this.paginas = paginas;
+		this.precioUnitario = precioUnitario;
+		this.titulo = titulo;
+		this.tema = tema;
+	}
+
 	public long getIsbn() {
 		return this.isbn;
 	}
@@ -91,6 +103,32 @@ public class Libro implements Serializable {
 
 	public void setTema(Tema tema) {
 		this.tema = tema;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (isbn ^ (isbn >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Libro))
+			return false;
+		Libro other = (Libro) obj;
+		if (isbn != other.isbn)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Libro [isbn=" + isbn + ", autor=" + autor + ", novedad=" + novedad + ", paginas=" + paginas
+				+ ", precioUnitario=" + precioUnitario + ", titulo=" + titulo + ", tema=" + tema + "]";
 	}
 
 }

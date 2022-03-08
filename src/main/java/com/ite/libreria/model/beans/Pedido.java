@@ -42,6 +42,16 @@ public class Pedido implements Serializable {
 	public Pedido() {
 	}
 
+	public Pedido(String direccionEntrega, String estado, Date fechaAlta, List<LineasPedido> lineasPedidos,
+			Usuario usuario) {
+		super();
+		this.direccionEntrega = direccionEntrega;
+		this.estado = estado;
+		this.fechaAlta = fechaAlta;
+		this.lineasPedidos = lineasPedidos;
+		this.usuario = usuario;
+	}
+
 	public int getIdPedido() {
 		return this.idPedido;
 	}
@@ -102,6 +112,12 @@ public class Pedido implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	@Override
+	public String toString() {
+		return "Pedido [idPedido=" + idPedido + ", direccionEntrega=" + direccionEntrega + ", estado=" + estado
+				+ ", fechaAlta=" + fechaAlta + ", usuario=" + usuario + "]";
 	}
 
 }

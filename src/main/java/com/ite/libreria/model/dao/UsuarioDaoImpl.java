@@ -17,8 +17,15 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	/*@Autowired
 	private PerfileRepository prepo;*/
 
+	
+	/**
+	 * Busca el usuario por su username:
+	 * 
+	 * @param El username del usuario
+	 * @return El Usuario con dicho username. Null si no existe.
+	 */
 	@Override
-	public Usuario findByUsername(String username) {
+	public Usuario findByUsername(String username) {		
 		return urepo.findById(username).orElse(null);
 	}
 
@@ -31,6 +38,17 @@ public class UsuarioDaoImpl implements UsuarioDao{
 				isAdmin = true;
 		}*/
 		return isAdmin;
+	}
+
+	@Override
+	public boolean addNewUserCliente(Usuario usuario) {
+		if (urepo.findById(usuario.getUsername()).orElse(null) != null) {			
+			return false;
+		} else {
+			urepo.save(usuario);
+			return true;
+		}
+		
 	}
 
 }
