@@ -62,8 +62,8 @@ public class HomeController {
 			@RequestParam ("direccion") String direccion) {
 		
 		Usuario usuarioRegistro = new Usuario();
-		/*Perfile perfilCliente = pdao.perfilPorDescripcion("ROL_CLIENTE");*/
-		Perfile perfilCliente = new Perfile(2, "ROL_CLIENTE");
+		Perfile perfilCliente = pfdao.perfilPorDescripcion("ROL_CLIENTE");
+		/*Perfile perfilCliente = new Perfile("ROL_CLIENTE");*/
 		List<Perfile> listaPerfilCliente = new ArrayList<Perfile>();
 		listaPerfilCliente.add(perfilCliente);
 		/*if (urepo.findByUsername(username)==null) {*/

@@ -7,7 +7,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>Mis datos</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 		<link rel="stylesheet" media="screen" href="/css/style.css"/>
 	</head>
@@ -16,23 +16,18 @@
 	
 	<jsp:include page="menu.jsp"/>
 	
-	<img src="/img/${libroEntero.isbn}.jpg"/>
 		<table class="table table-striped table-sm" >
 			<tr>
-				<th>ISBN</th>
-				<th>Titulo</th>
-				<th>Autor</th>
-				<th>Precio</th>
-				<th>Páginas</th>
-				<th>Temática</th>
+				<th>Nombre de usuario </th>
+				<th>Correo electrónico </th>
+				<th>Dirección</th>
+				<th>Perfil</th>
 			</tr>		
 				<tr>
-					<td>${libroEntero.isbn}</td>
-					<td>${libroEntero.titulo}</td>
-					<td>${libroEntero.autor}</td>
-					<td>${libroEntero.precioUnitario}</td>
-					<td>${libroEntero.paginas}</td>
-					<td>${libroEntero.tema.descTema}</td>
+					<td><sec:authentication property="name"/></td>
+					<td>${usuarioActivo.email}</td>
+					<td>${usuarioActivo.direccion}</td>
+					<td>${usuarioActivo.perfiles}</td>
 				</tr>
 		</table>
 	

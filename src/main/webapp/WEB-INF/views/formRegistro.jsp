@@ -13,9 +13,8 @@
 
 	<jsp:include page="menu.jsp"/>
 	
-	<p><a href="javascript:history.back()"><button type="button" class="btn btn-outline-secondary">Volver</button></a></p>
-			
-	<p class="alert ${tipoMensaje}" role="alert">${mensajeCliente}</p>
+	<p><a href="/"><button type="button" class="btn btn-outline-secondary">Volver</button></a></p>
+
 	
 	<h1 class="text-primary">Registrarse como cliente</h1>
 	<form action="/registro" method="post" name="registroForm">
@@ -46,6 +45,8 @@
 	</fieldset>
 	
 	<input class="send-button btn btn-primary" type="submit" value="Crear usuario" />
+	
+	<p class="alert ${tipoMensaje}" role="alert">${mensajeCliente}</p>
 	
 	</form>
 </body>

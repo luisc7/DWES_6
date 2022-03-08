@@ -121,7 +121,7 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/volver")
-	public String colver() {
+	public String volver() {
 		
 		return "redirect:/";
 	}
@@ -202,8 +202,15 @@ public class ClienteController {
 			attr.addFlashAttribute("mensajeCliente", "¡Has hecho tu pedido! En unos días los recibirás");
 			attr.addFlashAttribute("tipoMensaje", "alert-success");
 			return "redirect:/";
-		}
-		
+		}		
+	}
+	
+	@GetMapping("/misDatos")
+	public String misDatos(
+			Model e,
+			Authentication auth) {
+		e.addAttribute("usuarioActivo", udao.findByUsername(auth.getName()));
+		return "misDatos";
 	}
 
 }
