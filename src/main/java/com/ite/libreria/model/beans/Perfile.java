@@ -24,6 +24,12 @@ public class Perfile implements Serializable {
 	public Perfile() {
 	}
 
+	public Perfile(int idPerfil, String descripcion) {
+		super();
+		this.idPerfil = idPerfil;
+		this.descripcion = descripcion;
+	}
+
 	public int getIdPerfil() {
 		return this.idPerfil;
 	}

@@ -1,5 +1,9 @@
 package com.ite.libreria.controller;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ite.libreria.model.beans.Perfile;
 import com.ite.libreria.model.beans.Usuario;
 import com.ite.libreria.model.dao.LibroDao;
+import com.ite.libreria.model.dao.PerfileDao;
 import com.ite.libreria.model.dao.UsuarioDao;
 
 @Controller
@@ -23,7 +29,10 @@ public class HomeController {
 	private LibroDao ldao;
 	
 	@Autowired
-	private UsuarioDao urepo;
+	private UsuarioDao udao;
+	
+	@Autowired
+	private PerfileDao pfdao; 
 	
 	@GetMapping("/")
 	public String inicio(
@@ -36,10 +45,48 @@ public class HomeController {
 			return "index";
 	}
 	
+	@GetMapping("/registro")
+	public String registro() {
+			return "formRegistro";
+	}
 	
-	
-	
-	
+	@PostMapping("/registro")
+	public String registroForm(
+			Model e,
+			RedirectAttributes attr,
+			@RequestParam ("username") String username,
+			@RequestParam ("email") String email,
+			@RequestParam ("password") String password,
+			@RequestParam ("nombre") String nombre,
+			@RequestParam ("apellido") String apellido,
+			@RequestParam ("direccion") String direccion) {
+		
+		Usuario usuarioRegistro = new Usuario();
+		/*Perfile perfilCliente = pdao.perfilPorDescripcion("ROL_CLIENTE");*/
+		Perfile perfilCliente = new Perfile(2, "ROL_CLIENTE");
+		List<Perfile> listaPerfilCliente = new ArrayList<Perfile>();
+		listaPerfilCliente.add(perfilCliente);
+		/*if (urepo.findByUsername(username)==null) {*/
+		usuarioRegistro.setUsername(username);
+		usuarioRegistro.setEmail(email);
+		usuarioRegistro.setPassword("{noop}" + password);
+		usuarioRegistro.setNombre(nombre);
+		usuarioRegistro.setApellido(apellido);
+		usuarioRegistro.setDireccion(direccion);
+		usuarioRegistro.setEnabled(1);
+		usuarioRegistro.setFechaAlta(new Date());
+		usuarioRegistro.setPerfiles(listaPerfilCliente);
+			
+		if (udao.addNewUserCliente(usuarioRegistro)) {			
+			attr.addFlashAttribute("mensajeCliente", "¡Ya estás registrado! <a href=\"/login\">Inicia sesión</a> para añadir libros a tu carrito.");
+			attr.addFlashAttribute("tipoMensaje", "alert-success");
+			return "redirect:/";
+		} else {
+			e.addAttribute("mensajeCliente", "El alias ya está registrado, utiliza otro distinto.");
+			e.addAttribute("tipoMensaje", "alert-danger");
+			return "formRegistro";
+		}
+	}
 	
 	
 	@GetMapping("/acceso")
@@ -63,7 +110,7 @@ public class HomeController {
 		 * - Usuario no existe
 		 * - Contraseña incorrecta (usuario existe)
 		 */
-		Usuario usuarioActivo = urepo.findByUsername(username);
+		Usuario usuarioActivo = udao.findByUsername(username);
 		
 		if (usuarioActivo == null) {
 			model.addAttribute("mensajeLogin", "El usuario no existe");
