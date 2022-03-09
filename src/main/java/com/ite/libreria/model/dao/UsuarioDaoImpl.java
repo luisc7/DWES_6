@@ -51,4 +51,9 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		
 	}
 
+	@Override
+	public List<Usuario> findClientes() {
+		return urepo.listaPorPerfil("ROL_CLIENTE");
+	}
+
 }

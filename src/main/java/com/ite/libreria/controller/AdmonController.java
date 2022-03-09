@@ -16,6 +16,7 @@ import com.ite.libreria.model.beans.Libro;
 import com.ite.libreria.model.beans.Tema;
 import com.ite.libreria.model.dao.LibroDao;
 import com.ite.libreria.model.dao.TemaDao;
+import com.ite.libreria.model.dao.UsuarioDao;
 
 @Controller
 @RequestMapping("/admon")
@@ -25,6 +26,8 @@ public class AdmonController {
 	private TemaDao tdao;
 	@Autowired
 	private LibroDao ldao;
+	@Autowired
+	private UsuarioDao udao;
 	
 	@GetMapping("/altaTema") 
 	public String formAltaTema(){
@@ -156,6 +159,13 @@ public class AdmonController {
 			attr.addFlashAttribute("tipoMensaje", "alert-danger");
 			return "redirect:/cliente/tema";
 		}
+	}
+	
+	@GetMapping("/clientes")
+	public String listaClientes(
+			Model e) {
+		e.addAttribute("listadoClientes", udao.findClientes());
+		return "listaClientes";
 	}
 	
 }

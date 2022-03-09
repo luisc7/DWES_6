@@ -16,6 +16,8 @@
 	
 	<jsp:include page="menu.jsp"/>
 	
+	<p><a href="volver"><button type="button" class="btn btn-outline-secondary">Volver</button></a></p>
+	
 		<table class="table table-striped table-sm" >
 			<tr>
 				<th>Nombre de usuario </th>

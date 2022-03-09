@@ -52,9 +52,10 @@
 			<label for="paginas">Páginas </label>
 			<input type="number"  required value="${libroModificar.paginas }"  name="paginas" id="paginas"  class="form-control"/>
 			
+			<c:set var="precioLibro" value="${libroModificar.precioUnitario}" />
+			<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${libroModificar.precioUnitario}" var="precioLibro"/>
 			<label for="precio">Precio unitario </label>
-			<c:set var="precio" value="${libroModificar.precioUnitario}" />
-			<input type="number" step="0.01"  required value="<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2" value="${precio}" />"  name="precio" id="precio"  class="form-control"/>
+			<input type="number" step="0.01"  required value="${precioLibro}"  name="precio" id="precio"  class="form-control"/>
 			
 			<label for="novedad">¿Novedad?</label>
 			
