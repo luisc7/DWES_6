@@ -39,7 +39,22 @@
 						<a href="/cliente/verDetalle/${libro.isbn}" class="btn btn-info btn-sm">Ver detalle</a>
 						
 						<sec:authorize access="hasAuthority('ROL_CLIENTE')">
+						<c:set var="contains" value="false" />
+						<c:forEach var="libroCarrito" items="${carrito}">
+						  <c:if test="${libroCarrito.isbn eq libro.isbn}">
+						    <c:set var="contains" value="true" />
+						  </c:if>
+						</c:forEach>	
+						
+						
+						<c:if test="${contains  == 'false'}">
 							<a href="/cliente/addCarrito/${libro.isbn}" class="btn btn-success btn-sm">Añadir al carrito</a>
+						</c:if>
+						
+						<c:if test="${contains  == 'true'}">
+							<a class="btn btn-outline-success btn-sm">Ya está en el carrito</a>
+						</c:if>
+	
 		     			</sec:authorize>
 		     			
 		     			<sec:authorize access="hasAuthority('ROL_ADMON')">

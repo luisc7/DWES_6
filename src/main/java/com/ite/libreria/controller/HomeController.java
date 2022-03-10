@@ -73,12 +73,12 @@ public class HomeController {
 		usuarioRegistro.setNombre(nombre);
 		usuarioRegistro.setApellido(apellido);
 		usuarioRegistro.setDireccion(direccion);
-		usuarioRegistro.setEnabled(1);
+		usuarioRegistro.setEnabled(0);
 		usuarioRegistro.setFechaAlta(new Date());
 		usuarioRegistro.setPerfiles(listaPerfilCliente);
 			
 		if (udao.addNewUserCliente(usuarioRegistro)) {			
-			attr.addFlashAttribute("mensajeCliente", "¡Ya estás registrado! <a href=\"/login\">Inicia sesión</a> para añadir libros a tu carrito.");
+			attr.addFlashAttribute("mensajeCliente", "¡Ya estás registrado! Espera a que un administrador active tu usuario, y entonces <a href=\"/login\">Inicia sesión</a> para añadir libros a tu carrito.");
 			attr.addFlashAttribute("tipoMensaje", "alert-success");
 			return "redirect:/";
 		} else {
