@@ -168,4 +168,31 @@ public class AdmonController {
 		return "listaClientes";
 	}
 	
+	@GetMapping("/clientes/{username}")
+	public String detallesCliente(
+			@PathVariable ("username") String username,
+			Model e) {
+		e.addAttribute("cliente", udao.findByUsername(username));	
+		e.addAttribute("librosTotalCompradosCliente", udao.librosCliente(username));
+		e.addAttribute("importeTotalPedidosCliente", udao.gastoCliente(username));
+		e.addAttribute("librosTematicasDiferentesCliente", udao.temasCliente(username));
+		return "detalleCliente";
+	}
+	
+	@GetMapping("/clientes/{username}/activar")
+	public String activarCliente(
+			@PathVariable ("username") String username) {
+		
+		udao.activarUsuario(username);
+		return "redirect:../{username}";
+	}
+	
+	@GetMapping("/clientes/{username}/desactivar")
+	public String desactivarCliente(
+			@PathVariable ("username") String username) {
+		
+		udao.desactivarUsuario(username);
+		return "redirect:../{username}";
+	}
+	
 }

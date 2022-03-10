@@ -1,5 +1,6 @@
 package com.ite.libreria.model.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,61 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	@Override
 	public List<Usuario> findClientes() {
 		return urepo.listaPorPerfil("ROL_CLIENTE");
+	}
+
+	@Override
+	public int librosCliente(String username) {
+		Integer cantidad = urepo.librosCompradosPorCliente(username);
+		if (cantidad!=null)
+			return cantidad;
+		else
+			return 0;
+	}
+
+	@Override
+	public BigDecimal gastoCliente(String username) {
+		BigDecimal gastado = urepo.importeTotalGastadoCliente(username);
+		if(gastado == null)
+			return (new BigDecimal(0));
+		else
+			return gastado;
+	}
+
+	@Override
+	public int temasCliente(String username) {
+		Integer temas = urepo.tematicasDiferentesDeCliente(username);
+		if (temas == null)
+			return 0;
+		else
+			return temas;
+	}
+
+	@Override
+	public boolean activarUsuario(String username) {
+		Usuario usuario = urepo.findById(username).orElse(null);
+		if (usuario == null)
+			return false;
+		else {
+			usuario.setEnabled(1);
+			if (urepo.save(usuario) == usuario)
+				return true;
+			else
+				return false;
+		}
+	}
+
+	@Override
+	public boolean desactivarUsuario(String username) {
+		Usuario usuario = urepo.findById(username).orElse(null);
+		if (usuario == null)
+			return false;
+		else {
+			usuario.setEnabled(0);
+			if (urepo.save(usuario) == usuario)
+				return true;
+			else
+				return false;
+		}
 	}
 
 }

@@ -22,14 +22,18 @@
 		<table class="table table-striped table-sm" >
 			<tr>
 				<th>Nombre</th>
+				<th>Usuario</th>
 				<th>Correo electrónico</th>
+				<th>Opciones</th>
 			</tr>		
 			<c:forEach var="cliente" items="${listadoClientes }" >
 				<tr>
 					<td>${cliente.nombre}</td>
+					<td>${cliente.username}</td>
 					<td>${cliente.email}</td>
 					<td>
 							<a href="/admon/clientes/${cliente.username}" class="btn btn-info btn-sm">Info</a>
+							<a href="/admon/clientes/${cliente.username}?borrar" class="btn btn-danger btn-sm">Borrar cliente</a>
 					</td>
 				</tr>
 			</c:forEach>
