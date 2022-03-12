@@ -2,12 +2,14 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" media="screen" href="/css/style.css"/>
-<title>Alta de nuevo tema</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" media="screen" href="/css/style.css"/>
+	<title>Alta de nuevo tema</title>
 </head>
-<body>
+
+<body class="container-fluid">
 
 	<jsp:include page="menu.jsp"/>
 	

@@ -10,9 +10,11 @@ public interface UsuarioDao {
 	boolean userIsAdmin(Usuario usuario);
 	boolean addNewUserCliente(Usuario usuario);
 	List<Usuario> findClientes();
+	List<Usuario> findAdmons();
 	int librosCliente(String username);
 	BigDecimal gastoCliente(String username);
 	int temasCliente(String username);
 	boolean activarUsuario(String username);
 	boolean desactivarUsuario(String username);
+	boolean borrarUsuario(String username);
 }

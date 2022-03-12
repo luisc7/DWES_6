@@ -4,12 +4,14 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" media="screen" href="/css/style.css"/>
-<title>Alta nuevo libro</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" media="screen" href="/css/style.css"/>
+	<title>Alta nuevo libro</title>
 </head>
-<body>
+
+<body class="container-fluid">
 
 	<jsp:include page="menu.jsp"/>
 	

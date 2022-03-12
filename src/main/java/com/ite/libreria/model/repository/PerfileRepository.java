@@ -7,6 +7,8 @@ import com.ite.libreria.model.beans.Perfile;
 
 public interface PerfileRepository extends JpaRepository<Perfile, Integer>{
 	
-	@Query("select p.idPerfil from Perfile p where p.descripcion = ?1")
+	@Query(
+			"select p.idPerfil from Perfile p "
+			+ "where p.descripcion = ?1")
 	public Integer perfileId(String descripcion);
 }

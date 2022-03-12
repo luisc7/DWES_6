@@ -8,18 +8,18 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" media="screen" href="/css/style.css"/>
-	<title>Registro cliente</title>
+	<title>Registro admon</title>
 </head>
 
 <body class="container-fluid">
 
 	<jsp:include page="menu.jsp"/>
 	
-	<p><a href="/"><button type="button" class="btn btn-outline-secondary">Volver</button></a></p>
+	<p><a href="/admon/usuarios"><button type="button" class="btn btn-outline-secondary">Volver</button></a></p>
 
 	
-	<h1 class="text-primary">Registrarse como cliente</h1>
-	<form action="/registro" method="post" name="registroForm">
+	<h1 class="text-primary">Registro de un nuevo administrador</h1>
+	<form action="/admon/registroAdmon" method="post" name="registroForm">
 	<fieldset>
 		<legend>Cumplimente sus datos</legend>
 		<div class="grid">
@@ -48,7 +48,7 @@
 	
 	<input class="send-button btn btn-primary" type="submit" value="Crear usuario" />
 	
-	<p class="alert ${tipoMensaje}" role="alert">${mensajeCliente}</p>
+	<p class="alert ${tipoMensaje}" role="alert">${mensajeAdmon}</p>
 	
 	</form>
 </body>

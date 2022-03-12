@@ -58,6 +58,11 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	}
 
 	@Override
+	public List<Usuario> findAdmons() {
+		return urepo.listaPorPerfil("ROL_ADMON");
+	}
+
+	@Override
 	public int librosCliente(String username) {
 		Integer cantidad = urepo.librosCompradosPorCliente(username);
 		if (cantidad!=null)
@@ -109,6 +114,24 @@ public class UsuarioDaoImpl implements UsuarioDao{
 				return true;
 			else
 				return false;
+		}
+	}
+
+	@Override
+	public boolean borrarUsuario(String username) {
+
+		Usuario usuario = urepo.findById(username).orElse(null);
+		if (usuario == null)
+			return false;
+		else {
+			try {
+				urepo.deleteById(username);
+				return true;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
 		}
 	}
 

@@ -1,8 +1,14 @@
 package com.ite.libreria.controller;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ite.libreria.model.beans.Libro;
+import com.ite.libreria.model.beans.Perfile;
 import com.ite.libreria.model.beans.Tema;
+import com.ite.libreria.model.beans.Usuario;
 import com.ite.libreria.model.dao.LibroDao;
+import com.ite.libreria.model.dao.LineasPedidoDao;
+import com.ite.libreria.model.dao.PedidoDao;
+import com.ite.libreria.model.dao.PerfileDao;
 import com.ite.libreria.model.dao.TemaDao;
 import com.ite.libreria.model.dao.UsuarioDao;
 
@@ -28,6 +39,12 @@ public class AdmonController {
 	private LibroDao ldao;
 	@Autowired
 	private UsuarioDao udao;
+	@Autowired
+	private PedidoDao pdao;
+	@Autowired
+	private PerfileDao pfdao;
+	@Autowired
+	private LineasPedidoDao lpdao;
 	
 	@GetMapping("/altaTema") 
 	public String formAltaTema(){
@@ -171,12 +188,27 @@ public class AdmonController {
 	@GetMapping("/clientes/{username}")
 	public String detallesCliente(
 			@PathVariable ("username") String username,
-			Model e) {
-		e.addAttribute("cliente", udao.findByUsername(username));	
-		e.addAttribute("librosTotalCompradosCliente", udao.librosCliente(username));
-		e.addAttribute("importeTotalPedidosCliente", udao.gastoCliente(username));
-		e.addAttribute("librosTematicasDiferentesCliente", udao.temasCliente(username));
-		return "detalleCliente";
+			@RequestParam (name="borrar", required=false) String borrar,
+			Model e,
+			RedirectAttributes attr) {
+		
+		if (borrar == null) {
+			e.addAttribute("cliente", udao.findByUsername(username));	
+			e.addAttribute("librosTotalCompradosCliente", udao.librosCliente(username));
+			e.addAttribute("importeTotalPedidosCliente", udao.gastoCliente(username));
+			e.addAttribute("librosTematicasDiferentesCliente", udao.temasCliente(username));
+			return "detalleCliente";
+		} else {
+			boolean borrado = udao.borrarUsuario(username);
+			if (borrado) {
+				attr.addFlashAttribute("mensaje", "Usuario \""+ username+ "\" borrado.");
+				attr.addFlashAttribute("tipoMensaje", "alert-info");
+			} else {
+				attr.addFlashAttribute("mensaje", "NO se ha podido al usuario "+ username + ".");
+				attr.addFlashAttribute("tipoMensaje", "alert-danger");
+			} 
+			return "redirect:../clientes";
+		}
 	}
 	
 	@GetMapping("/clientes/{username}/activar")
@@ -194,5 +226,157 @@ public class AdmonController {
 		udao.desactivarUsuario(username);
 		return "redirect:../{username}";
 	}
+	
+	/*@GetMapping("/pedidos") 
+	public String formPedidosDiarios(
+			Model e){
+		e.addAttribute("listaPedidos", tdao.findTemas());
+		return "formPedidosDiarios";
+	}
+	
+	@PostMapping("/pedidos") 
+	public String envioFormPedidosDiarios(
+			@RequestParam ("fecha") String fecha,
+			Model model,
+			RedirectAttributes attr){
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date diaPedidos = format.parse(fecha);
+			model.addAttribute("listaPedidosFecha", pdao.listaPedidosDia(diaPedidos));
+			return "listaPedidos";
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "redirect:/";
+		}
+		
+		
+	}*/
+	
+	@GetMapping("/pedidos") 
+	public String formPedidosDiarios(
+			@RequestParam (required=false) String fecha,
+			Model model,
+			RedirectAttributes attr){
+		if (fecha==null) {
+		model.addAttribute("listaPedidos", tdao.findTemas());
+		return "formPedidosDiarios";
+		} else {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			try {
+				Date diaPedidos = format.parse(fecha);
+				model.addAttribute("listaPedidosFecha", pdao.listaPedidosDia(diaPedidos));
+				return "listaPedidos";
+				
+			} catch (ParseException e) {
+				e.printStackTrace();
+				return "redirect:/";
+			}
+		}
+	}
+	
+	@GetMapping("/pedidos/{idPedido}")
+	public String detallesPedido(
+			@PathVariable ("idPedido") int idPedido,
+			Model e) {
+		
+		e.addAttribute("pedido", pdao.pedidoPorId(idPedido));
+		e.addAttribute("importeTotalPedidosCliente", pdao.sumaPedido(idPedido));
+		return "detallePedido";
+	}
+	
+	@GetMapping("/usuarios")
+	public String listaAdmons(
+			Model e,
+			Authentication auth) {
+		e.addAttribute("listadoAdmons", udao.findAdmons());
+		e.addAttribute("superAdmon", "Tutankadmon");
+		e.addAttribute("activeAdmon", auth.getName());
+		return "listaUsuarios";
+	}
+	
+
+	
+	@GetMapping("/usuarios/{username}")
+	public String modAdmons(
+			Model e,
+			RedirectAttributes attr,
+			Authentication auth,
+			@PathVariable String username,
+			@RequestParam (required=false) String activar,
+			@RequestParam (required=false) String desactivar,
+			@RequestParam (required=false) String borrar) {
+		
+		if (username.toLowerCase().equals("tutankadmon")) {
+			attr.addFlashAttribute("mensaje", "No se puede borrar al súper administrador");
+			attr.addFlashAttribute("tipoMensaje", "alert-danger");
+		} else if (username.equals(auth.getName())) {
+			attr.addFlashAttribute("mensaje", "No se puede borrar el admin activo");
+			attr.addFlashAttribute("tipoMensaje", "alert-danger");
+		} else {
+			if (activar!=null && udao.activarUsuario(username)) {
+				attr.addFlashAttribute("mensaje", "Se ha activado al administrador " + username +".");
+				attr.addFlashAttribute("tipoMensaje", "alert-success");
+			} else if (desactivar!=null && udao.desactivarUsuario(username)) {
+				attr.addFlashAttribute("mensaje", "Se ha desactivado al administrador " + username +".");
+				attr.addFlashAttribute("tipoMensaje", "alert-success");
+			} else if (borrar!=null) {
+				udao.borrarUsuario(username);
+				attr.addFlashAttribute("mensaje", "Se ha borrado el administrador " + username +".");
+				attr.addFlashAttribute("tipoMensaje", "alert-success");
+			} else {
+				attr.addFlashAttribute("mensaje", "Ha habido un error.");
+				attr.addFlashAttribute("tipoMensaje", "alert-danger");
+			}
+		}
+		
+		return "redirect:/admon/usuarios";
+	}
+	
+	@GetMapping("/registroAdmon")
+	public String registroAdmon() {
+		return "formRegistroAdmon";
+	}
+	
+	@PostMapping("/registroAdmon")
+	public String registroAdmonForm(
+			Model e,
+			RedirectAttributes attr,
+			@RequestParam ("username") String username,
+			@RequestParam ("email") String email,
+			@RequestParam ("password") String password,
+			@RequestParam ("nombre") String nombre,
+			@RequestParam ("apellido") String apellido,
+			@RequestParam ("direccion") String direccion) {
+		
+		Usuario usuarioRegistro = new Usuario();
+		Perfile perfilAdmon = pfdao.perfilPorDescripcion("ROL_ADMON");
+		List<Perfile> listaPerfilAdmon = new ArrayList<Perfile>();
+		listaPerfilAdmon.add(perfilAdmon);
+		usuarioRegistro.setUsername(username);
+		usuarioRegistro.setEmail(email);
+		usuarioRegistro.setPassword("{noop}" + password);
+		usuarioRegistro.setNombre(nombre);
+		usuarioRegistro.setApellido(apellido);
+		usuarioRegistro.setDireccion(direccion);
+		usuarioRegistro.setEnabled(1);
+		usuarioRegistro.setFechaAlta(new Date());
+		usuarioRegistro.setPerfiles(listaPerfilAdmon);
+			
+		if (udao.addNewUserCliente(usuarioRegistro)) {			
+			attr.addFlashAttribute("mensaje", "¡Nuevo administrador registrado!");
+			attr.addFlashAttribute("tipoMensaje", "alert-success");
+			return "redirect:/admon/usuarios";
+		} else {
+			e.addAttribute("mensajeAdmon", "El alias <b>" + username + "</b> ya está registrado, utiliza otro distinto.");
+			e.addAttribute("tipoMensaje", "alert-danger");
+			return "formRegistroAdmon";
+		}
+	}
+	
+	
+	
 	
 }

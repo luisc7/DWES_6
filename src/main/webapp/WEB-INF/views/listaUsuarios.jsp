@@ -19,23 +19,38 @@
 		
 		<h1 class="text-primary">${h1pagina}</h1>
 		
-		<h2 class="text-secondary">Lista de clientes</h2>
+		<a href="/admon/registroAdmon" class="btn btn-primary">Registrar nuevo administrador</a>
 		
+		<h2 class="text-secondary">Administradores</h2>
 		<table class="table table-striped table-sm" >
 			<tr>
 				<th>Nombre</th>
+				<th>Apellidos</th>
 				<th>Usuario</th>
 				<th>Correo electrónico</th>
 				<th>Opciones</th>
 			</tr>		
-			<c:forEach var="cliente" items="${listadoClientes }" >
+			<c:forEach var="admon" items="${listadoAdmons }" >
 				<tr>
-					<td>${cliente.nombre}</td>
-					<td>${cliente.username}</td>
-					<td>${cliente.email}</td>
+					<td>${admon.nombre}</td>
+					<td>${admon.apellido}</td>
+					<td>${admon.username}</td>
+					<td>${admon.email}</td>
+					
+					<c:set var="desactivarOpciones" value="" />
+					 <c:if test="${admon.username eq superAdmon || admon.username eq superAdmon}">
+					 	<c:set var="desactivarOpciones" value="disabled\" tabindex=\"-1\" role=\"button\" aria-disabled=\"true" />
+					 </c:if>
+					
 					<td>
-							<a href="/admon/clientes/${cliente.username}" class="btn btn-info btn-sm">Info</a>
-							<a href="/admon/clientes/${cliente.username}?borrar" class="btn btn-danger btn-sm">Borrar cliente</a>
+						<c:if test="${admon.enabled == 1}">
+							<a href="/admon/usuarios/${admon.username}?desactivar" class="btn btn-secondary btn-sm ${desactivarOpciones}">Desactivar</a>
+						</c:if>
+							
+						<c:if test="${admon.enabled == 0}">
+							<a href="/admon/usuarios/${admon.username}?activar" class="btn btn-primary btn-sm ${desactivarOpciones}">&nbsp;&nbsp;Activar&nbsp;&nbsp;&nbsp;</a>
+						</c:if>
+							<a href="/admon/usuarios/${admon.username}?borrar" class="btn btn-danger btn-sm ${desactivarOpciones}">Borrar</a>
 					</td>
 				</tr>
 			</c:forEach>

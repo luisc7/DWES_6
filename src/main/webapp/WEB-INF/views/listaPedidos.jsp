@@ -18,24 +18,16 @@
 		<p class="alert ${tipoMensaje}" role="alert">${mensaje}</p>
 		
 		<h1 class="text-primary">${h1pagina}</h1>
-		
-		<h2 class="text-secondary">Lista de clientes</h2>
-		
 		<table class="table table-striped table-sm" >
 			<tr>
-				<th>Nombre</th>
-				<th>Usuario</th>
-				<th>Correo electrónico</th>
+				<th>Nº de Pedido</th>
 				<th>Opciones</th>
 			</tr>		
-			<c:forEach var="cliente" items="${listadoClientes }" >
+			<c:forEach var="pedido" items="${listaPedidosFecha }" >
 				<tr>
-					<td>${cliente.nombre}</td>
-					<td>${cliente.username}</td>
-					<td>${cliente.email}</td>
+					<td>${pedido.idPedido}</td>
 					<td>
-							<a href="/admon/clientes/${cliente.username}" class="btn btn-info btn-sm">Info</a>
-							<a href="/admon/clientes/${cliente.username}?borrar" class="btn btn-danger btn-sm">Borrar cliente</a>
+							<a href="/admon/pedidos/${pedido.idPedido}" class="btn btn-info btn-sm">Detalle del pedido</a>
 					</td>
 				</tr>
 			</c:forEach>

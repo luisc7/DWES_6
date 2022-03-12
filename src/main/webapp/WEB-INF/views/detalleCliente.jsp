@@ -9,15 +9,14 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Cliente ${cliente.username}</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 		<link rel="stylesheet" media="screen" href="/css/style.css"/>
 	</head>
 	
-	<body>
+	<body class="container-fluid">
 	
 	<jsp:include page="menu.jsp"/>
 	
-	<p><a href="javascript:history.back()"><button type="button" class="btn btn-outline-secondary">Volver</button></a></p>
+	<p><a href="/admon/clientes"><button type="button" class="btn btn-outline-secondary">Volver</button></a></p>
 	
 	<h1 class="text-primary">Detalles del cliente</h1>
 	
@@ -38,7 +37,7 @@
 				<td>${cliente.email} </td>
 				<td>
 					<c:if test="${cliente.enabled==1 }">
-						<span>Sí </span><a href="${cliente.username}/desactivar" class="btn btn-danger btn-sm">Desactivar</a>
+						<span>Sí </span><a href="${cliente.username}/desactivar" class="btn btn-outline-danger btn-sm">Desactivar</a>
 					</c:if>
 					<c:if test="${cliente.enabled==0 }">
 						<span>No </span><a href="${cliente.username}/activar" class="btn btn-success btn-sm">Activar</a>
