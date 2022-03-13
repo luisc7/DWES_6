@@ -55,17 +55,29 @@ public class AdmonController {
 	public String envioFormAltaTema(
 			@RequestParam ("nombreTema") String nombreTema,
 			@RequestParam ("abrevTema") String abrevTema,
+			Model model,
 			RedirectAttributes attr){
 		
-		if (tdao.nuevoTema(nombreTema, abrevTema)==true) {
-
+		int addTema = tdao.nuevoTema(nombreTema, abrevTema);
+		
+		if (addTema==1) {
 			attr.addFlashAttribute("mensajeTema", "Se ha añadido el  tema "+ nombreTema + " a la BBDD.");
 			attr.addFlashAttribute("tipoMensaje", "alert-success");
+			return "redirect:/cliente/tema";
 		} else {
-			attr.addFlashAttribute("mensajeTema", "NO se ha añadido "+ nombreTema + " a la BBDD porque el tema ya existe.");
-			attr.addFlashAttribute("tipoMensaje", "alert-danger");
-		}		
-		return "redirect:/cliente/tema";
+			
+			if (addTema==-1){		
+				model.addAttribute("mensajeTema", "NO se ha añadido "+ nombreTema + " a la BBDD porque el tema ya existe.");
+				model.addAttribute("tipoMensaje", "alert-danger");
+			} else if (addTema==0){
+				model.addAttribute("mensajeTema", "NO se ha añadido "+ nombreTema + " a la BBDD porque la abreviatura del tema (" + abrevTema.toUpperCase() + ") ya existe.");
+				model.addAttribute("tipoMensaje", "alert-danger");
+			} else {
+				model.addAttribute("mensajeTema", "NO se ha añadido "+ nombreTema + " a la BBDD.");
+				model.addAttribute("tipoMensaje", "alert-danger");
+			}
+			return "formAltaTema";
+		}
 	}
 	
 	@GetMapping("/altaLibro") 

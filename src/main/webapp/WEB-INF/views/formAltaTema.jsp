@@ -33,5 +33,8 @@
 	<input class="send-button btn btn-primary" type="submit" value="Añadir tema" />
 	
 	</form>
+	
+	<p class="alert ${tipoMensaje}" role="alert">${mensajeTema}</p>
+	
 </body>
 </html>

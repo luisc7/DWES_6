@@ -12,31 +12,34 @@ import com.ite.libreria.model.repository.TemaRepository;
 public class TemaDaoImpl implements TemaDao{
 	
 	@Autowired
-	private TemaRepository tdao;
+	private TemaRepository trepo;
 
 	@Override
 	public List<Tema> findTemas() {
-		return tdao.findAll();
+		return trepo.findAll();
 	}
 
 	@Override
 	public String nombreTema(String tema) {
-		return tdao.nameTopic(tema);
+		return trepo.nameTopic(tema);
 	}
 
 	@Override
-	public boolean nuevoTema(String nombreTema, String abreviatura) {
-		Tema nuevoTema = new Tema(abreviatura, nombreTema);
-		if (tdao.topicExist(nombreTema)==null) {
-			tdao.save(nuevoTema);
-			return true;
-		} else 
-			return false;
+	public int nuevoTema(String nombreTema, String abreviatura) {
+		Tema nuevoTema = new Tema(abreviatura.toUpperCase(), nombreTema);
+		if (trepo.topicExist(nombreTema)!=null) {
+			return -1;
+		} else if (trepo.topicAbrevExist(abreviatura)!=null) {
+			return 0;
+		} else {
+			trepo.save(nuevoTema);
+			return 1;
+		}
 	}
 
 	@Override
 	public Tema temaPorId(int idTema) {
-		return tdao.findById(idTema).orElse(null);
+		return trepo.findById(idTema).orElse(null);
 	}
 
 }

@@ -17,4 +17,9 @@ public interface TemaRepository extends JpaRepository<Tema, Integer>{
 			+ "where t.descTema = ?1")
 	public Integer topicExist(String tema);
 	
+	@Query(
+			"select t.idTema from Tema t "
+			+ "where t.abreviatura = ?1")
+	public Integer topicAbrevExist(String abreviatura);
+	
 }
